@@ -1,10 +1,10 @@
 Name:           happy
-Version:        1.15
-Release:        %mkrel 3
+Version:        1.16
+Release:        %mkrel 1
 License:        BSD-like
 Group:          Development/Other
 URL:            http://haskell.org/happy/
-Source:         http://haskell.org/happy/dist/%{version}/happy-%{version}-src.tar.gz
+Source:         http://www.haskell.org/happy/dist/%{version}/happy-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildRequires:  ghc
 BuildRequires:  docbook-style-xsl
@@ -39,28 +39,31 @@ Authors:
 %setup -q
 
 %build
+
+runhaskell Setup.lhs configure --prefix=%{_prefix}  --libdir=%{_libdir}
+runhaskell Setup.lhs build
+cd doc
 test -f configure || autoreconf
-./configure --prefix=%{_prefix} --libdir=%{_libdir}
-make
+./configure
 make html
 
 %install
 rm -rf ${RPM_BUILD_ROOT}
 
-make prefix=${RPM_BUILD_ROOT}%{_prefix} libdir=${RPM_BUILD_ROOT}%{_libdir}/%{name}-%{version} install
+runhaskell Setup.lhs copy --destdir=${RPM_BUILD_ROOT}
 
 %clean
 rm -rf ${RPM_BUILD_ROOT}
 
 %files
 %defattr(-,root,root)
-%doc happy/ANNOUNCE
-%doc happy/CHANGES
-%doc happy/LICENSE
-%doc happy/README
-%doc happy/TODO
-%doc happy/doc/happy
-%doc happy/examples
+%defattr(-,root,root)
+%doc ANNOUNCE
+%doc CHANGES
+%doc LICENSE
+%doc README
+%doc TODO
+%doc doc/happy
+%doc examples
 %{_bindir}/happy
-%{_bindir}/happy-%{version}
-%{_libdir}/happy-%{version}
+%{_datadir}/happy-%{version}
