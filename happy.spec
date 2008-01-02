@@ -5,6 +5,7 @@ License:        BSD-like
 Group:          Development/Other
 URL:            http://haskell.org/happy/
 Source:         http://www.haskell.org/happy/dist/%{version}/happy-%{version}.tar.gz
+BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildRequires:  ghc
 BuildRequires:  docbook-style-xsl
 BuildRequires:  libxslt-proc
