@@ -1,5 +1,5 @@
 Name:           happy
-Version:        1.16
+Version:        1.17
 Release:        %mkrel 1
 License:        BSD-like
 Group:          Development/Other
@@ -51,6 +51,8 @@ make html
 rm -rf ${RPM_BUILD_ROOT}
 
 runhaskell Setup.lhs copy --destdir=${RPM_BUILD_ROOT}
+
+rm -fr %buildroot%_datadir/doc/
 
 %clean
 rm -rf ${RPM_BUILD_ROOT}
