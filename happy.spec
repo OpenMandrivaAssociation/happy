@@ -1,6 +1,6 @@
 Name:           happy
 Version:        1.17
-Release:        %mkrel 3
+Release:        %mkrel 4
 License:        BSD-like
 Group:          Development/Other
 URL:            http://haskell.org/happy/
