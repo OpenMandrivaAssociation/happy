@@ -1,5 +1,5 @@
 Name:           happy
-Version:        1.18.4
+Version:        1.18.5
 Release:        %mkrel 1
 License:        BSD-like
 Group:          Development/Other
