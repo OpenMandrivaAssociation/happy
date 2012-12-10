@@ -1,0 +1,36 @@
+--- happy-1.18.10/Setup.lhs.userhooks	2012-09-21 23:27:58.000000000 +0400
++++ happy-1.18.10/Setup.lhs	2012-11-18 18:22:32.360357149 +0400
+@@ -5,7 +5,7 @@ module Main where
+ 
+ import Distribution.PackageDescription (PackageDescription(..))
+ import Distribution.Simple.Setup ( BuildFlags(..), buildVerbose )
+-import Distribution.Simple ( defaultMainWithHooks, defaultUserHooks, UserHooks(..) )
++import Distribution.Simple ( defaultMainWithHooks, simpleUserHooks, UserHooks(..) )
+ import Distribution.Simple.LocalBuildInfo ( LocalBuildInfo(..) )
+ import Distribution.Simple.Program
+ 
+@@ -14,7 +14,7 @@ import Control.Exception ( try )
+ import System.Directory (removeFile)
+ 
+ main :: IO ()
+-main = defaultMainWithHooks defaultUserHooks{ postBuild = myPostBuild,
++main = defaultMainWithHooks simpleUserHooks{ postBuild = myPostBuild,
+ 					      postClean = myPostClean,
+ 					      copyHook  = myCopy,
+ 					      instHook  = myInstall }
+@@ -55,13 +55,13 @@ myPostClean _ _ _ _ = mapM_ (try' . remo
+         try' = try
+ 
+ myInstall pkg_descr lbi hooks flags =
+-  instHook defaultUserHooks pkg_descr' lbi hooks flags
++  instHook simpleUserHooks pkg_descr' lbi hooks flags
+   where pkg_descr' = pkg_descr {
+           dataFiles = dataFiles pkg_descr ++ all_template_files
+ 	}
+ 
+ myCopy pkg_descr lbi hooks copy_flags =
+-  copyHook defaultUserHooks pkg_descr' lbi hooks copy_flags
++  copyHook simpleUserHooks pkg_descr' lbi hooks copy_flags
+   where pkg_descr' = pkg_descr {
+           dataFiles = dataFiles pkg_descr ++ all_template_files
+ 	}
