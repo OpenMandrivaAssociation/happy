@@ -5,7 +5,7 @@
 Name:           %{module}
 Version:        1.18.10
 Release:        4
-Summary:        Happy is a parser generator for Haskell
+Summary:        Parser generator for Haskell
 Group:          Development/Other
 License:        BSD
 URL:            http://hackage.haskell.org/package/%{module}
