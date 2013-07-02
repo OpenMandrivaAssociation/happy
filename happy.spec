@@ -4,7 +4,7 @@
 %define module happy
 Name:           %{module}
 Version:        1.18.10
-Release:        4
+Release:        5
 Summary:        Parser generator for Haskell
 Group:          Development/Other
 License:        BSD
